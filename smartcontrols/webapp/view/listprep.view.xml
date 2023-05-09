@@ -1,0 +1,31 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="sap.ui5.md.smartcontrols.controller.listprep" displayBlock="true">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <sap.ui.comp.smartfilterbar:SmartFilterBar
+           
+                xmlns:sap.ui.comp.smartfilterbar="sap.ui.comp.smartfilterbar" id="smartFB" entitySet="I_Currency">
+                <sap.ui.comp.smartfilterbar:controlConfiguration>
+                    <sap.ui.comp.smartfilterbar:ControlConfiguration 
+                    id="Currency" visibleInAdvancedArea="true" label="Currency" key="Currency"/>
+                    <sap.ui.comp.smartfilterbar:ControlConfiguration 
+                    xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:sap.ui.comp.smartfilterbar="sap.ui.comp.smartfilterbar"
+                     id="CurrencyText" visibleInAdvancedArea="true" label="Currency Text" key="Currency_Text"/>
+                    <sap.ui.comp.smartfilterbar:ControlConfiguration 
+                    xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:sap.ui.comp.smartfilterbar="sap.ui.comp.smartfilterbar"
+                      id="Decimals" visibleInAdvancedArea="true" label="Decimals" key="Decimals"/>
+                    <sap.ui.comp.smartfilterbar:ControlConfiguration xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+                     xmlns:sap.ui.comp.smartfilterbar="sap.ui.comp.smartfilterbar"
+                      id="CurrencyISOCode" visibleInAdvancedArea="true" label="CurrencyISOCode" key="CurrencyISOCode"/>
+                </sap.ui.comp.smartfilterbar:controlConfiguration>
+            </sap.ui.comp.smartfilterbar:SmartFilterBar>
+            <sap.ui.comp.smarttable:SmartTable smartFilterId="smartFB" entitySet="I_Currency" 
+            initiallyVisibleFields="Currency,Currency_Text,Decimals,CurrencyISOCode" 
+            width="100%" direction="Column" fitContainer="true" tableType="ResponsiveTable"
+             header="Smart Table" enableAutoBinding="true"
+              xmlns:sap.ui.comp.smarttable="sap.ui.comp.smarttable" id="smartTable">
+               <Table id="currencyTableId" selectionChange="oncurrencyTableChange" mode="SingleSelectMaster">
+                    </Table>
+              </sap.ui.comp.smarttable:SmartTable>
+        </content>
+    </Page>
+</mvc:View>
