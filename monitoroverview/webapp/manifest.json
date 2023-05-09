@@ -1,0 +1,283 @@
+{
+    "_version": "1.45.0",
+    "sap.app": {
+        "id": "sap.ui.fica.bn.monitoroverview",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:ovp",
+            "version": "1.8.3",
+            "toolsId": "2f1f9b3f-89b3-4efa-8654-3dd6bb48e1b1"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZUI_TRAVEL_HEADER_V1/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZUI_TRAVEL_HEADER_V1_VAN",
+                        "annotation"
+                    ],
+                    "localUri": "localService/mainService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZUI_TRAVEL_HEADER_V1_VAN": {
+                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZUI_TRAVEL_HEADER_V1_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/mainService/ZUI_TRAVEL_HEADER_V1_VAN.xml"
+                }
+            },
+            "annotation": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation.xml",
+                "settings": {
+                    "localUri": "annotations/annotation.xml"
+                }
+            },
+            "zui_travel_header": {
+                "uri": "/sap/opu/odata4/sap/zui_travel_header_odatav4/srvd/sap/zui_travel_header/0001/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0",
+                    "annotations": [
+                        "annotation0"
+                    ],
+                    "localUri": "localService/zui_travel_header/metadata.xml"
+                }
+            },
+            "annotation0": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation0.xml",
+                "settings": {
+                    "localUri": "annotations/annotation0.xml"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "sap-ui-fica-bn-monitoroverview-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "Monitor",
+                    "action": "Overview",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": ""
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.105.4",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.f": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ovp": {},
+                "sap.ui.rta": {},
+                "sap.ui.layout": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "sap.ui.fica.bn.monitoroverview.i18n.i18n"
+                }
+            },
+            "mainModel": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "zui_travel_header": {
+                "dataSource": "zui_travel_header",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "config": {},
+            "routes": [],
+            "targets": {}
+        }
+    },
+    "sap.ovp": {
+        "globalFilterModel": "mainModel",
+        "globalFilterEntityType": "ZC_TRAVEL_HEADERType",
+        "containerLayout": "resizable",
+        "enableLiveFilter": true,
+        "considerAnalyticalParameters": false,
+        "cards": {
+            "CARD_000": {
+                "model": "mainModel",
+                "template": "sap.ovp.cards.charts.analytical",
+                "settings": {
+                    "title": "Digital Wallet Analysis",
+                    "entitySet": "ZC_TRAVEL_HEADER",
+                    "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#NetColumnDataPoint",
+                    "valueSelectionInfo": "Total Withdrawals Using wallets",
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#MonitorDisb",
+                    "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#ToDigitalMonitorAnalysis"
+                }
+            },
+            "CARD_001": {
+                "model": "mainModel",
+                "template": "sap.ovp.cards.table",
+                "settings": {
+                    "title": "Digital Wallet Details ",
+                    "entitySet": "ZC_TRAVEL_HEADER",
+                    "sortOrder": "descending",
+                    "sortBy": "keyfield",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.LineItem",
+                    "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#NetColumnDataPoint",
+                    "tabs": [
+                        {
+                            "selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#NewSelection",
+                            "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#StatusNew",
+                            "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#ToDigitalMonitorAnalysis",
+                            "value": "New"
+                        },
+                        {
+                            "selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#SuccessSelection",
+                            "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#StatusSuccess",
+                            "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#ToDigitalMonitorAnalysis",
+                            "value": "Success"
+                        },
+                        {
+                            "selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#FailureSelection",
+                            "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#StatusFailure",
+                            "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#ToDigitalMonitorAnalysis",
+                            "value": "Failure"
+                        }
+                    ]
+                }
+            },
+            "CARD_004": {
+                "model": "mainModel",
+                "template": "sap.ovp.cards.linklist",
+                "settings": {
+                    "title": "Quick Links",
+                    "listFlavor": "standard",
+                    "staticContent": [
+                        {
+                            "title": "PayPal PayOut",
+                            "imageUri": "sap-icon://goalseek",
+                            "imageAltText": "{{card30_icon_so_man}}",
+                            "targetUri": "https://www.paypal.com/",
+                            "openInNewWindow": true
+                        },
+                        {
+                            "title": "HyperWallet Payments",
+                            "imageUri": "sap-icon://wrench",
+                            "imageAltText": "{{card30_icon_so_man}}",
+                            "targetUri": "https://www.Hyperwallet.com/",
+                            "openInNewWindow": true
+                        },
+                        {
+                            "title": "Business Partner",
+                            "subTitle": "Manage",
+                            "imageUri": "sap-icon://business-objects-explorer",
+                            "imageAltText": "Display",
+                            "semanticObject": "BusinessPartner",
+                            "action": "Display"
+                        },
+                        {
+                            "title": "Manage Return Lots",
+                            "imageUri": "sap-icon://list",
+                            "imageAltText": "{{card30_icon_so_man}}",
+                            "targetUri": "https://www.Hyperwallet.com/",
+                            "openInNewWindow": true
+                        }
+                    ]
+                }
+            },
+            "card_010": {
+                "model": "mainModel",
+                "template": "sap.ovp.cards.charts.analytical",
+                "settings": {
+                    "title": "Partner Disbursement details",
+                    "entitySet": "ZC_TRAVEL_HEADER",
+                    "valueSelectionInfo": "Partner disbursement details",
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#BPColumn",
+                    "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#toMonitorAnalysis"
+                }
+            },
+            "card_070": {
+                "model": "mainModel",
+                "template": "sap.ovp.cards.charts.analytical",
+                "settings": {
+                    "title": "Wisely Responses based on Date",
+                    "entitySet": "ZC_TRAVEL_ITEM",
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#DestinationChart"
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "analytical"
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "sap-ui-fica-bn-monitoroverview"
+    },
+    "sap.ui.generic.app": {
+        "settings": {}
+    }
+}

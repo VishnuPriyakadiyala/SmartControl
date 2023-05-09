@@ -1,0 +1,155 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata4/sap/zui_travel_header_odatav4/srvd/sap/zui_travel_header/0001/$metadata">
+        <edmx:Include Namespace="com.sap.gateway.srvd.zui_travel_header.v0001" Alias="SAP"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="local1">
+            <Annotations Target="SAP.ZC_TRAVEL_HEADERType">
+                <Annotation Term="UI.DataPoint" Qualifier="StatusNew">
+                    <Record Type="UI.DataPointType">
+                        <PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>
+                        <PropertyValue Property="Value" Path="status"/>
+                        <PropertyValue Property="Title" String="New Status "/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.DataPoint" Qualifier="StatusSuccess">
+                    <Record Type="UI.DataPointType">
+                        <PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Positive"/>
+                        <PropertyValue Property="Value" Path="status"/>
+                        <PropertyValue Property="Title" String=" Success Status "/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.DataPoint" Qualifier="StatusFailure">
+                    <Record Type="UI.DataPointType">
+                        <PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Negative"/>
+                        <PropertyValue Property="Value" Path="status"/>
+                        <PropertyValue Property="Title" String=" Failure Status "/>
+                    </Record>
+                </Annotation>
+                
+        <Annotation Term="UI.LineItem" Qualifier="WalletStatusNew">
+            <Collection>
+                <Record Type="UI.DataField">
+                    <PropertyValue Property="Value" Path="clearing_doc"/>
+                    <PropertyValue Property="Label" String="Clearing Document"/>
+                </Record>
+                <Record Type="UI.DataField">
+                    <PropertyValue Property="Value" Path="partner"/>
+                    <PropertyValue Property="Label" String="Partner"/>
+                </Record>
+<Record Type="UI.DataFieldForAnnotation">
+     <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#StatusNew" />
+ </Record>
+            </Collection>
+        </Annotation>
+ 
+      <Annotation Term="UI.LineItem" Qualifier="WalletStatusSuccess">
+            <Collection>
+                <Record Type="UI.DataField">
+                    <PropertyValue Property="Value" Path="clearing_doc"/>
+                    <PropertyValue Property="Label" String="Clearing Document"/>
+                </Record>
+                <Record Type="UI.DataField">
+                    <PropertyValue Property="Value" Path="partner"/>
+                    <PropertyValue Property="Label" String="Partner"/>
+                </Record>
+<Record Type="UI.DataFieldForAnnotation">
+     <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#StatusSuccess" />
+ </Record>
+            </Collection>
+        </Annotation>
+        <Annotation Term="UI.LineItem" Qualifier="WalletStatusFailure">
+            <Collection>
+                <Record Type="UI.DataField">
+                    <PropertyValue Property="Value" Path="clearing_doc"/>
+                    <PropertyValue Property="Label" String="Clearing Document"/>
+                </Record>
+                <Record Type="UI.DataField">
+                    <PropertyValue Property="Value" Path="partner"/>
+                    <PropertyValue Property="Label" String="Partner"/>
+                </Record>
+<Record Type="UI.DataFieldForAnnotation">
+     <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#StatusFailure" />
+ </Record>
+            </Collection>
+        </Annotation>
+                <Annotation Term="UI.SelectionVariant" Qualifier="NewSelection">
+                    <Record>
+                        <PropertyValue Property="SelectOptions">
+                            <Collection>
+                                <Record Type="UI.SelectOptionType">
+                                    <PropertyValue Property="PropertyName" PropertyPath="status"/>
+                                    <PropertyValue Property="Ranges">
+                                        <Collection>
+                                            <Record Type="UI.SelectionRangeType">
+                                                <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                                                <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+                                                <PropertyValue Property="Low" String="N"/>
+                                            </Record>
+                                        </Collection>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.SelectionVariant" Qualifier="SuccessSelection">
+                    <Record>
+                        <PropertyValue Property="SelectOptions">
+                            <Collection>
+                                <Record Type="UI.SelectOptionType">
+                                    <PropertyValue Property="PropertyName" PropertyPath="status"/>
+                                    <PropertyValue Property="Ranges">
+                                        <Collection>
+                                            <Record Type="UI.SelectionRangeType">
+                                                <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                                                <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+                                                <PropertyValue Property="Low" String="S"/>
+                                            </Record>
+                                        </Collection>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.SelectionVariant" Qualifier="FailureSelection">
+                    <Record>
+                        <PropertyValue Property="SelectOptions">
+                            <Collection>
+                                <Record Type="UI.SelectOptionType">
+                                    <PropertyValue Property="PropertyName" PropertyPath="status"/>
+                                    <PropertyValue Property="Ranges">
+                                        <Collection>
+                                            <Record Type="UI.SelectionRangeType">
+                                                <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                                                <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+                                                <PropertyValue Property="Low" String="E"/>
+                                            </Record>
+                                        </Collection>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                    <Annotation Term="UI.Identification" Qualifier="ToDigitalMonitorAnalysis">
+                        <Collection>
+                            <Record Type="UI.DataFieldForIntentBasedNavigation">
+                                <PropertyValue Property="SemanticObject" String="Monitor"/>
+                                <PropertyValue Property="Action" String="Analysis"/>
+                            </Record>
+                        </Collection>
+                    </Annotation>
+   
+
+            </Annotations>
+
+                
+            
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
